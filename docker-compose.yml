@@ -1,0 +1,66 @@
+version: "3.7"
+
+x-service: &base-service
+  stdin_open: true
+  tty: true
+  networks:
+    - default
+
+x-volumes-backend: &backend-volumes
+  - './backend:/app'
+
+x-volumes-frontend: &frontend-volumes
+  - './frontend:/app'
+
+x-volumes-db: &database-volumes
+  - 'db_data:/bitnami/postgresql'
+
+
+services:
+  frontend:
+    <<: *base-service
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    environment:
+      - APP=frontend
+    ports:
+      - '3000:3000'
+    volumes: *frontend-volumes
+    depends_on:
+      - backend
+    command: bash scripts/run.sh
+
+  backend:
+    <<: *base-service
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    environment:
+      - APP=backend
+      - PORT=3001
+    ports:
+      - '3001:3001'
+    volumes: *backend-volumes
+    env_file:
+      - .environment/development/.database.env
+    depends_on:
+      - db
+    command: bash scripts/run.sh
+
+  db:
+    <<: *base-service
+    image: 'bitnami/postgresql:13.4.0'
+    ports:
+      - '5432'
+    env_file:
+      - .environment/development/.database.env
+    volumes: *database-volumes
+
+
+volumes:
+  db_data:
+
+
+networks:
+  default:
