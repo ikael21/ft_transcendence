@@ -4,6 +4,12 @@
 
 All development happens inside the `docker` containers managed by `docker-compose`
 
+## If you work on School21 Mac
+
+Add your project directory to `File Sharing`
+
+<img width="1293" alt="Screen Shot 2023-05-13 at 2 11 24 PM" src="https://github.com/ikael21/ft_transcendence/assets/83520969/42fe8417-73a5-4dab-9eec-6c892d1db844">
+
 ## Start the application
 
 ```bash
