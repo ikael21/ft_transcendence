@@ -1,0 +1,25 @@
+.ErrorBox {
+  position: relative;
+  font-size: 21vw;
+  text-align: center;
+  color: azure;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.ErrorBtn {
+  position: relative;
+  border:none;
+  top: 1vw;
+  background: #00babc;
+  display: block;
+  align-items: center;
+  margin: 13px auto;
+  width: 20%;
+  line-height: 1.8em;
+  font-size: 2em;
+  border-radius: .32em;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+}

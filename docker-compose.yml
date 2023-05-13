@@ -27,6 +27,8 @@ services:
     ports:
       - '3000:3000'
     volumes: *frontend-volumes
+    env_file:
+      - .environment/development/.frontend.env
     depends_on:
       - backend
     command: bash scripts/run.sh

@@ -1,0 +1,128 @@
+.LoginModalsBG {
+  position: inherit;
+
+}
+
+.LoginTxt {
+  position: relative;
+  top: 5vw;
+  display: block;
+  align-items: center;
+  text-align: center;
+  margin: 13px auto;
+  width: 20%;
+  line-height: 1.8em;
+  font-size: 5em;
+  border-radius: .32em;
+  color: #aaa;
+  font-family:'Gill Sans', 'Gill Sans MT';
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  width: 540px;
+  height: 60px;
+}
+
+.LoginBtn {
+  position: relative;
+  border:none;
+  top: 10vw;
+  background: #00babc;
+  display: block;
+  align-items: center;
+  margin: 13px auto;
+  width: 20%;
+  line-height: 1.8em;
+  font-size: 2em;
+  border-radius: .32em;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.LoginModalInput {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  top: 310px;
+
+  width: 540px;
+  height: 80px;
+
+  outline: none;
+  font-size: 50px;
+  font-weight: 400;
+  align-items: center;
+  color: #000;
+}
+
+.DefaultProfileImg {
+  position: absolute;
+  left: 290px;
+  top: 50px;
+
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+
+  /* background: #fff; */
+}
+
+.ChangeProfileImageBtn label {
+  /* display: none; */
+  position: absolute;
+  left: 465px;
+  top: 200px;
+
+  width: 50px;
+  height: 50px;
+
+  background: url("../assets/add-photo.png");
+}
+
+.ChangeProfileImageBtn input {
+  display: none;
+  position: absolute;
+  left: 465px;
+  top: 200px;
+
+  width: 50px;
+  height: 50px;
+
+  background: url("../assets/add-photo.png");
+}
+
+.NickNameInitialForm label {
+  position: absolute;
+  left: 120px;
+  top: 310px;
+
+  height: 50px;
+  width: 300px;
+
+  font-size: 50px;
+  visibility: hidden;
+}
+
+.NickNameInitialForm input {
+  position: absolute;
+  left: 120px;
+  top: 310px;
+
+  height: 80px;
+  width: 540px;
+
+  font-size: 50px;
+}
+
+.InitialSettingSaveBtn {
+  position: absolute;
+  left: 120px;
+  top: 410px;
+
+  width: 540px;
+  height: 100px;
+
+  font-size: 50px;
+}
