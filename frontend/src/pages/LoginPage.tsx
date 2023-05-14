@@ -23,8 +23,6 @@ import InitialSettingModal from "../components/LoginPage/InitialSetting";
 import { AdminLogPrinter } from "../event/event.util";
 
 export default function LoginPage() {
-  /* localstorage에 없는데 cookie에 있으면 로그인이 된거다 */
-  /* localstorage에 있으면 로그인 된거다 */
   const [refreshToken, setRefreshToken] = useAtom(refreshTokenAtom);
   const [cookie, setCookie] = useAtom(cookieAtom);
   const [TFAEnabled, setTFAEnabled] = useAtom(TFAEnabledAtom);
@@ -34,42 +32,60 @@ export default function LoginPage() {
   const cookieIMade = "refreshToken";
   const [cookies, setCookies, removeCookie] = useCookies([cookieIMade]);
   const navigate = useNavigate();
+
+  //useEffect(() => {
+  //  const storedRefreshToken = localStorage.getItem("refreshToken");
+  //  if (storedRefreshToken !== null) {
+  //    setRefreshToken(true);
+  //  }
+  //  if (cookies[cookieIMade] !== undefined) {
+  //    setCookie(true);
+  //    localStorage.setItem("refreshToken", cookies[cookieIMade]);
+  //    removeCookie(cookieIMade);
+  //    setCookie(false);
+  //  }
+  //}, [setRefreshToken, setCookie]); // data change
+
+  //useEffect(() => {
+  //  const value = localStorage.getItem("refreshToken");
+  //  if (value) {
+  //    const decoded: any = jwt_decode(JSON.stringify(value));
+  //    if (decoded.twoFactorEnabled) {
+  //      setTFAEnabled(true);
+  //    } else {
+  //      if (hasLogin === false) {
+  //        setHasLogin(true);
+  //        navigate("/chat");
+  //      } else {
+  //        AdminLogPrinter(adminConsole, "already login -- ??");
+  //        navigate("/chat");
+  //      }
+  //    }
+  //  }
+  //}, [setTFAEnabled]);
   useEffect(() => {
     const storedRefreshToken = localStorage.getItem("refreshToken");
     if (storedRefreshToken !== null) {
       setRefreshToken(true);
+      setTFAEnabled(true);
+      localStorage.setItem("refreshToken", "ftonitakekelelekfselkfkjshldj")
+      cookies[cookieIMade] = "cookie token lalala"
     }
-    if (cookies[cookieIMade] !== undefined) {
-      setCookie(true);
-      localStorage.setItem("refreshToken", cookies[cookieIMade]);
-      removeCookie(cookieIMade);
-      setCookie(false);
-    }
+    setCookie(true);
+    //removeCookie(cookieIMade);
+    //setCookie(false);
   }, [setRefreshToken, setCookie]); // data change
+  
 
-  useEffect(() => {
-    /* 2FA가 켜져있는지 확인 */
-    const value = localStorage.getItem("refreshToken");
-    if (value) {
-      const decoded: any = jwt_decode(JSON.stringify(value));
-      if (decoded.twoFactorEnabled) {
-        setTFAEnabled(true);
-      } else {
-        if (hasLogin === false) {
-          setHasLogin(true);
-          navigate("/chat");
-        } else {
-          AdminLogPrinter(adminConsole, "already login -- ??");
-          navigate("/chat");
-        }
-      }
-    }
-  }, [setTFAEnabled]);
   return (
     <BackGround>
-      {!refreshToken && <SignInModal />}
-      {refreshToken && !cookie && TFAEnabled && <TFAModal />}
-      {refreshToken ? <InitialSettingModal /> : null}
+      {/*{!refreshToken && <SignInModal />}*/}
+      {/*{refreshToken && !cookie && TFAEnabled && <TFAModal />}*/}
+      {/*{refreshToken ? <InitialSettingModal /> : null}*/}
+
+      {/*<TFAModal/>*/}
+
+      <InitialSettingModal/>
     </BackGround>
   );
 }

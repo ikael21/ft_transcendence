@@ -23,7 +23,7 @@ export default function InitialSettingModal() {
 
   const setDefaultInfo = async () => {
     if (newName.length < 2 || newName.trim().length < 2) {
-      alert("닉네임은 2글자 이상이어야 합니다.");
+      alert("Имя от 3 символов!");
       setNewName("");
       return;
     }
@@ -48,8 +48,8 @@ export default function InitialSettingModal() {
         );
 
         if (!profileChange.ok) {
-          alert("파일 업로드에 실패했습니다.");
-          return;
+          alert("Ошибка изменения профиля [1]");
+          //return;
         }
       }
 
@@ -61,14 +61,15 @@ export default function InitialSettingModal() {
       });
 
       if (!nickNameChange.ok) {
-        alert("닉네임 변경에 실패했습니다.");
-        return;
+        alert("Ошибка изменения профиля [2]");
+        //return;
       }
     } catch (error) {
       alert(error);
     }
     AdminLogPrinter(adminConsole, newName);
-    navigate("/chat");
+    //navigate("/chat");
+    window.location.href = `${process.env.REACT_APP_API_URL}/chat`;
   };
 
   return (
@@ -94,11 +95,11 @@ export default function InitialSettingModal() {
         />
       </div>
       <div className="NickNameInitialForm">
-        <label htmlFor="InitialSaveName">New Nickname</label>
+        <label htmlFor="InitialSaveName">Введи свой никнейм</label>
         <input
           id="InitialSaveName"
           type="text"
-          placeholder="New Nickname"
+          placeholder="Никнейм"
           maxLength={8}
           value={newName}
           onChange={(e) => {
@@ -107,7 +108,7 @@ export default function InitialSettingModal() {
         />
       </div>
       <button className="InitialSettingSaveBtn" onClick={setDefaultInfo}>
-        Save
+        Сохранить
       </button>
     </div>
   );

@@ -1,6 +1,5 @@
 .LoginModalsBG {
   position: inherit;
-
 }
 
 .LoginTxt {
@@ -58,34 +57,34 @@
 }
 
 .DefaultProfileImg {
-  position: absolute;
-  left: 290px;
-  top: 50px;
-
+  position: relative;
+  /*left: 290px;*/
+  margin: auto;
+  margin-top: 5%;
   width: 200px;
   height: 200px;
   border-radius: 100px;
 
-  /* background: #fff; */
+  background: #fff;
 }
 
 .ChangeProfileImageBtn label {
-  /* display: none; */
-  position: absolute;
-  left: 465px;
-  top: 200px;
-
+  display:block;
+  position:relative;
+  margin-left: calc(50% - 25px);
+  margin-top: -5%;
   width: 50px;
   height: 50px;
+  resize:none;
 
   background: url("../assets/add-photo.png");
 }
 
 .ChangeProfileImageBtn input {
   display: none;
-  position: absolute;
-  left: 465px;
-  top: 200px;
+  position: relative;
+  margin: auto;
+  margin-top: -5%;
 
   width: 50px;
   height: 50px;
@@ -94,35 +93,46 @@
 }
 
 .NickNameInitialForm label {
-  position: absolute;
-  left: 120px;
-  top: 310px;
+  display: none;
+  position: relative;
+  /*top: 310px;*/
+  left:inherit;
+  margin-left: auto;
+  margin-right: auto;
+  height: 40px;
+  width: 240px;
 
-  height: 50px;
-  width: 300px;
-
-  font-size: 50px;
-  visibility: hidden;
+  font-size: 30px;
 }
 
 .NickNameInitialForm input {
-  position: absolute;
-  left: 120px;
-  top: 310px;
-
-  height: 80px;
-  width: 540px;
-
-  font-size: 50px;
+  /*position: absolute;*/
+  width: 10%;
+  height: 25px;
+  margin-bottom: 25px;
+  margin-top: 5%;
+  margin-left: 44%;
+  background-color: rgba(30, 30, 30, 0.5);
+  border: 1px solid #00babc;
+  color: white;
+  font-size: 1.3em;
+  padding: 8px 20px 5px 30px;
 }
 
 .InitialSettingSaveBtn {
-  position: absolute;
-  left: 120px;
-  top: 410px;
-
-  width: 540px;
-  height: 100px;
-
-  font-size: 50px;
+  position: relative;
+  border:none;
+  top: 1vw;
+  background: #00babc;
+  display: block;
+  align-items: center;
+  margin: 13px auto;
+  width: 15%;
+  line-height: 1.6em;
+  font-size: 1.8em;
+  border-radius: .32em;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
 }
