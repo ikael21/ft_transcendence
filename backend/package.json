@@ -20,7 +20,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "create_service": "nest g service",
     "create_migration": "typeorm migration:create",
-    "run_migration": "typeorm migration:run"
+    "run_migration": "typeorm migration:run -d dist/datasources/postgres.js"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
