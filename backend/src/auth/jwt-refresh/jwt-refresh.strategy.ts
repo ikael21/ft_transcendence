@@ -7,7 +7,6 @@ import {
 } from "@nestjs/common";
 import { UserService } from "../../user/user.service";
 import { TokenPayload } from "../token-payload.entity";
-import config from "config";
 
 @Injectable()
 export class JwtRefreshStrategy extends PassportStrategy(
@@ -17,7 +16,7 @@ export class JwtRefreshStrategy extends PassportStrategy(
   constructor(private readonly userService: UserService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: config.get<string>("jwt.secret"),
+      secretOrKey: process.env.JWT_SECRET,
     });
   }
 

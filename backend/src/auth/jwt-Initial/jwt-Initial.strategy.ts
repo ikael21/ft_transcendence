@@ -3,7 +3,6 @@ import { PassportStrategy } from "@nestjs/passport";
 import { Injectable, Logger, UnauthorizedException } from "@nestjs/common";
 import { UserService } from "../../user/user.service";
 import { TokenPayload } from "../token-payload.entity";
-import config from "config";
 
 @Injectable()
 export class JwtInitialStrategy extends PassportStrategy(
@@ -21,7 +20,7 @@ export class JwtInitialStrategy extends PassportStrategy(
           return null;
         },
       ]),
-      secretOrKey: config.get<string>("jwt.secret"),
+      secretOrKey: process.env.JWT_SECRET,
     });
   }
 

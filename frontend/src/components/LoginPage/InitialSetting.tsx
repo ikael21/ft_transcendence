@@ -49,7 +49,7 @@ export default function InitialSettingModal() {
 
         if (!profileChange.ok) {
           alert("Ошибка изменения профиля [1]");
-          //return;
+          return;
         }
       }
 
@@ -62,14 +62,13 @@ export default function InitialSettingModal() {
 
       if (!nickNameChange.ok) {
         alert("Ошибка изменения профиля [2]");
-        //return;
+        return;
       }
     } catch (error) {
       alert(error);
     }
     AdminLogPrinter(adminConsole, newName);
-    //navigate("/chat");
-    window.location.href = `${process.env.REACT_APP_API_URL}/chat`;
+    navigate("/chat");
   };
 
   return (

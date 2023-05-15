@@ -8,7 +8,6 @@ import {
 } from "@nestjs/common";
 import { UserService } from "../../user/user.service";
 import { TokenPayload } from "../token-payload.entity";
-import config from "config";
 
 @Injectable()
 export class Jwt2faStrategy extends PassportStrategy(Strategy, "jwt-2fa") {
@@ -23,7 +22,7 @@ export class Jwt2faStrategy extends PassportStrategy(Strategy, "jwt-2fa") {
           return null;
         },
       ]),
-      secretOrKey: config.get<string>("jwt.secret"),
+      secretOrKey: process.env.JWT_SECRET,
     });
   }
 

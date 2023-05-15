@@ -13,7 +13,6 @@ import {
   UseGuards
 } from "@nestjs/common";
 import * as swagger from "@nestjs/swagger";
-import config from "config";
 import { Response } from "express";
 import { AuthService } from "src/auth/auth.service";
 import { Jwt2faAuthGuard } from "src/auth/jwt-2fa/jwt-2fa-auth.guard";
@@ -47,9 +46,9 @@ export class LoginController {
   @Get("/oauth")
   @Redirect(
     "https://api.intra.42.fr/oauth/authorize?client_id=" +
-      config.get<string>("intra.client_id") +
+      process.env.INTRA_CLIENT_ID +
       "&redirect_uri=" +
-      config.get<string>("intra.redirect_uri") +
+      process.env.INTRA_REDIRECT_URI +
       "&response_type=code",
     302,
   )
@@ -100,6 +99,7 @@ export class LoginController {
   })
   @Get("/oauth/callback")
   async intraSignIn(@Res() res: Response, @Query("code") code: string) {
+    console.log("Catch code!")
     const userData = await this.authService.intraSignIn(code);
     const user = await this.userService.getUserByIntraDto(userData);
 

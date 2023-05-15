@@ -1,6 +1,5 @@
 import { ConflictException, ForbiddenException, Injectable, Logger, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import * as bcrypt from 'bcrypt';
-import config from "config";
 import { authenticator } from "otplib";
 import { toDataURL } from 'qrcode';
 import { DatabaseService } from "src/database/database.service";
@@ -69,7 +68,7 @@ export class UserService {
 
 	async setUserRefreshToken(user: User, refresh_token: string) {
 		const refreshTokenPayload = refresh_token.split('.')[1];
-		const updatedRefreshToken = await bcrypt.hash(refreshTokenPayload, config.get<number>('hash.password.saltOrRounds'));
+		const updatedRefreshToken = await bcrypt.hash(refreshTokenPayload, process.env.HASH_PASSWORD_SALT_OR_ROUNDS);
 		await this.databaseService.updateUserRefreshToken(user.uid, updatedRefreshToken);
 	}
 
@@ -83,7 +82,7 @@ export class UserService {
 	}
 
 	async setUserPw(user: User, pw: PasswordDto) {
-		const cryptedPassword = await bcrypt.hash(pw.password, config.get<number>('hash.password.saltOrRounds'));
+		const cryptedPassword = await bcrypt.hash(pw.password, process.env.HASH_PASSWORD_SALT_OR_ROUNDS);
 		await this.databaseService.updateUserPassword(user.uid, cryptedPassword);
 	}
 

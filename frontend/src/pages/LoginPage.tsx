@@ -33,59 +33,42 @@ export default function LoginPage() {
   const [cookies, setCookies, removeCookie] = useCookies([cookieIMade]);
   const navigate = useNavigate();
 
-  //useEffect(() => {
-  //  const storedRefreshToken = localStorage.getItem("refreshToken");
-  //  if (storedRefreshToken !== null) {
-  //    setRefreshToken(true);
-  //  }
-  //  if (cookies[cookieIMade] !== undefined) {
-  //    setCookie(true);
-  //    localStorage.setItem("refreshToken", cookies[cookieIMade]);
-  //    removeCookie(cookieIMade);
-  //    setCookie(false);
-  //  }
-  //}, [setRefreshToken, setCookie]); // data change
-
-  //useEffect(() => {
-  //  const value = localStorage.getItem("refreshToken");
-  //  if (value) {
-  //    const decoded: any = jwt_decode(JSON.stringify(value));
-  //    if (decoded.twoFactorEnabled) {
-  //      setTFAEnabled(true);
-  //    } else {
-  //      if (hasLogin === false) {
-  //        setHasLogin(true);
-  //        navigate("/chat");
-  //      } else {
-  //        AdminLogPrinter(adminConsole, "already login -- ??");
-  //        navigate("/chat");
-  //      }
-  //    }
-  //  }
-  //}, [setTFAEnabled]);
   useEffect(() => {
     const storedRefreshToken = localStorage.getItem("refreshToken");
     if (storedRefreshToken !== null) {
       setRefreshToken(true);
-      setTFAEnabled(true);
-      localStorage.setItem("refreshToken", "ftonitakekelelekfselkfkjshldj")
-      cookies[cookieIMade] = "cookie token lalala"
     }
-    setCookie(true);
-    //removeCookie(cookieIMade);
-    //setCookie(false);
+    if (cookies[cookieIMade] !== undefined) {
+      setCookie(true);
+      localStorage.setItem("refreshToken", cookies[cookieIMade]);
+      removeCookie(cookieIMade);
+      setCookie(false);
+    }
   }, [setRefreshToken, setCookie]); // data change
-  
+
+  useEffect(() => {
+    const value = localStorage.getItem("refreshToken");
+    if (value) {
+      const decoded: any = jwt_decode(JSON.stringify(value));
+      if (decoded.twoFactorEnabled) {
+        setTFAEnabled(true);
+      } else {
+        if (hasLogin === false) {
+          setHasLogin(true);
+          navigate("/chat");
+        } else {
+          AdminLogPrinter(adminConsole, "already login -- ??");
+          navigate("/chat");
+        }
+      }
+    }
+  }, [setTFAEnabled]);
 
   return (
     <BackGround>
-      {/*{!refreshToken && <SignInModal />}*/}
-      {/*{refreshToken && !cookie && TFAEnabled && <TFAModal />}*/}
-      {/*{refreshToken ? <InitialSettingModal /> : null}*/}
-
-      {/*<TFAModal/>*/}
-
-      <InitialSettingModal/>
+      {!refreshToken && <SignInModal />}
+      {refreshToken && !cookie && TFAEnabled && <TFAModal />}
+      {refreshToken ? <InitialSettingModal /> : null}
     </BackGround>
   );
 }
