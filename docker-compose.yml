@@ -43,18 +43,18 @@ services:
       - '3001:3001'
     volumes: *backend-volumes
     env_file:
-      - .environment/development/.database.env
+      - .environment/development/.env
     depends_on:
       - db
     command: bash scripts/run.sh
 
   db:
     <<: *base-service
-    image: 'bitnami/postgresql:13.4.0'
+    image: 'postgres:15.3-alpine3.18'
     ports:
       - '5432'
     env_file:
-      - .environment/development/.database.env
+      - .environment/development/.env
     volumes: *database-volumes
 
 
