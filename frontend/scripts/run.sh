@@ -5,5 +5,5 @@ set -e
 npm install --frozen-lockfile
 
 # frontend entrypoint
-exec npm start $@
+exec npm run dev $@
 
